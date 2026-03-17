@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amazon-deployment
+  labels:
+    env: prod
+    author: Tawfeeq
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: amazon-app
+  template:
+    metadata:
+      labels:
+        app: amazon-app
+    spec:
+      containers:
+        - name: amzon
+          image: tawfeeq421/amazon
+          ports:
+            containerPort: 3000
+          resources:
+            requests:
+              cpu: 150m
+              memory: 120Mi
+            limits:
+              cpu: 250m
+              memory: 220Mi
+
