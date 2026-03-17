@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netflix-deployment
+  namespace: prod
+  labels:
+    env: prod
+    author: Tawfeeq
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netfilx-app
+  stragety: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavaliable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: netflix-app
+    spec:
+      containers:
+        - name: netflix
+          image: tawfeeq421/netflix
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: 150m
+              memory: 120Mi
+            limits:
+              cpu: 250m
+              memory: 240Mi
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readnessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
