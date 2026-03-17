@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: amazon-deployment
+  namespace: prod
   labels:
     env: prod
     author: Tawfeeq

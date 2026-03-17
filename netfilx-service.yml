@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: netfilx-service
+  namespace: prod
+  labels:
+    author: Tawfeeq
+spec:
+  type: ClusterIp
+  selctor: netfilx-app
+  ports:
+    - targetPort: 3000
+      port: 80
+      protocol: TCP
