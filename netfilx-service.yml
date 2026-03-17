@@ -6,9 +6,9 @@ metadata:
   labels:
     author: Tawfeeq
 spec:
-  type: ClusterIp
-  selctor: 
-  app: :netfilx-app
+  type: ClusterIP
+  selector: 
+    app: netflix-app
   ports:
     - targetPort: 3000
       port: 80
