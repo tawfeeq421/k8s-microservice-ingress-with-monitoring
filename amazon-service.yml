@@ -10,7 +10,7 @@ spec:
   type: ClusterIP
   selector:
     app: amazon-app
-    ports:
-      - targetPort: 3000
-        port: 80
-        protocol: TCP
+  ports:
+    - targetPort: 3000
+      port: 80
+      protocol: TCP

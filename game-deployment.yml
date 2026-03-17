@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: amazon-deployment
+  name: game-deployment
   namespace: prod
   labels:
     env: prod
@@ -10,8 +10,8 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: amazon-app
-  strategy:
+      app: game-app
+  stragety:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1
@@ -19,11 +19,11 @@ spec:
   template:
     metadata:
       labels:
-        app: amazon-app
+        app: game-app
     spec:
       containers:
-        - name: amzon
-          image: tawfeeq421/amazon
+        - name: mygame
+          image: tawfeeq421/2048
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
@@ -33,7 +33,9 @@ spec:
               memory: 120Mi
             limits:
               cpu: 250m
-              memory: 220Mi
+              memory: 240Mi
+
+
           livenessProbe:
             httpGet:
               path: /
@@ -45,6 +47,6 @@ spec:
             httpGet:
               path: /
               port: 3000
-            initialDelaySeconds: 10
-            periodSeconds: 10
+            initialDelaySeconds: 5
+            periodSeconds: 5
 
